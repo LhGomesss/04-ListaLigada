@@ -141,16 +141,53 @@ void inserirElemento()
 		}
 		aux->prox = novo;
 	}
+	cout << "Elemento inserido com sucesso!\n";
 }
 
 void excluirElemento()
 {
-	
+	int valor;
+	cout << "Digite o elemento que deseja excluir: ";
+	cin >> valor;
+
+	NO* atual = primeiro;
+	NO* anterior = NULL;
+
+	while (atual != NULL && atual->valor != valor) {
+		anterior = atual;
+		atual = atual->prox;
+	}
+
+	if (atual == NULL) {
+		cout << "Elemento não encontrado!\n";
+		return;
+	}
+
+	// Excluir o primeiro
+	if (anterior == NULL) {
+		primeiro = atual->prox;
+	}
+	else {
+		// Excluir no meio ou no fim
+		anterior->prox = atual->prox;
+	}
+
+	free(atual);
+	cout << "Elemento excluido com sucesso!\n";
 }
 
 void buscarElemento()
 {
-	
+	int valor;
+	cout << "Digite o elemento que deseja buscar: ";
+	cin >> valor;
+
+	if (posicaoElemento(valor) != NULL) {
+		cout << "Elemento encontrado!\n";
+	}
+	else {
+		cout << "Elemento não encontrado!\n";
+	}
 }
 
 
